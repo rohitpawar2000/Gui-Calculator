@@ -1,0 +1,129 @@
+from  tkinter import *
+
+root=Tk()
+
+def click(event):
+    global scvalue
+    text=event.widget.cget('text')
+
+    if text == "=":
+        if scvalue.get().isdigit():
+            value=int(scvalue.get())
+
+        else:
+            try:
+                value=eval(screen.get())
+            except Exception as e:
+                print(e)
+                value="Error"
+
+            scvalue.set(value)
+            screen.update()
+
+
+    elif text == "C":
+        scvalue.set("")
+        screen.update()
+
+    elif text == "enter":
+        if scvalue.get().isdigit():
+            value=int(scvalue.get())
+
+        else:
+            value=eval(screen.get())
+
+            scvalue.set(value)
+            screen.update()
+
+
+
+
+
+    else :
+        scvalue.set(scvalue.get() +text)
+        screen.update()
+
+
+root.geometry('323x560')
+root.title('CALCULATOR')
+# root.resizable(0,0)
+
+scvalue=StringVar()
+scvalue.set("")
+screen=Entry(root,textvariable=scvalue, font="lucida 40 bold",justify=RIGHT)
+screen.pack(fill=X)
+
+f=Frame(root,bg='grey')
+b=Button(f,text='7',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='8',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='9',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='*',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+f.pack()
+
+f=Frame(root,bg='grey')
+b=Button(f,text='4',font="lucida 32 bold",padx=2)
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='5',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='6',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='-',font="lucida 32 bold",padx=3)
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=9,pady=10)
+f.pack()
+
+
+f=Frame(root,bg='grey')
+b=Button(f,text='1',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='2',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='3',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='+',font="lucida 32 bold",padx=1)
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=6,pady=10)
+f.pack()
+
+
+f=Frame(root,bg='grey')
+b=Button(f,text='0',font="lucida 32 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='/',font="lucida 31 bold",padx=6)
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='C',font="lucida 30 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=10,pady=10)
+b=Button(f,text='%',font="lucida 30 bold")
+b.bind("<Button-1>",click)
+b.pack(side=LEFT,padx=4,pady=11)
+f.pack()
+b=Button(root,text='.',font="lucida 30 bold",padx=40)
+b.bind("<Button-1>",click)
+b.pack(side=LEFT)
+b=Button(root,text="=",font='lucida 50 bold',padx=50,bg='red')
+b.bind("<Button-1>",click)
+b.pack(side=RIGHT)
+
+b=Button(root, text='enter')
+b.bind("<Button-1>",click)
+b.pack()
+
+
+root.mainloop()
